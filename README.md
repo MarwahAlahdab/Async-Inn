@@ -28,3 +28,28 @@ The relationships between the entities are as follows:
 
 
 ![ERD](lab11.png)
+
+
+# Hotel Management System
+
+Hotel Management System is an ASP.NET application designed to manage hotels, rooms, and amenities.
+It is connected to a database to store and manage data.
+
+
+
+
+
+## Controllers
+
+The System includes the following controllers:
+
+- `/api/Hotel`: Retrieves all hotels
+- `/api/Room`: Retrieves all rooms
+- `/api/Amenity`: Retrieves all amenity
+
+
+
+
+## Data Seeding
+
+The application includes data seeding functionality to add default data to the tables.
