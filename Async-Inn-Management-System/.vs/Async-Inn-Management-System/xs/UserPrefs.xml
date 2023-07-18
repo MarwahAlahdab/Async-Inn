@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{C03C7ACB-3B3B-46E8-8B34-112E5B7F13A9}|https">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="appsettings.json">
+    <Files>
+      <File FileName="Program.cs" Line="22" Column="28" />
+      <File FileName="Models/Hotel.cs" Line="7" Column="5" />
+      <File FileName="Data/AsyncInnDbContext.cs" Line="45" Column="1" />
+      <File FileName="appsettings.json" Line="3" Column="126" />
+      <File FileName="Models/Amenity.cs" Line="8" Column="41" />
+      <File FileName="Models/Room.cs" Line="7" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Async-Inn-Management-System" expanded="True">
+            <Node name="Async-Inn-Management-System" expanded="True">
+              <Node name="Data" expanded="True" />
+              <Node name="Migrations" expanded="True" />
+              <Node name="Models" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Async-Inn-Management-System PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
