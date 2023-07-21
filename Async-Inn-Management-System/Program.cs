@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using Async_Inn_Management_System.Data;
+using Async_Inn_Management_System.Models.Interfaces;
+using Async_Inn_Management_System.Models.Services;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -11,6 +14,15 @@ builder.Services.AddControllers();
 
 string connString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AsyncInnDbContext>(options => options.UseSqlServer(connString));
+
+
+
+
+
+builder.Services.AddTransient<IHotel, HotelServices>();
+builder.Services.AddTransient<IRoom, RoomService>();
+builder.Services.AddTransient<IAmenity, AmenityService>();
+
 
 
 var app = builder.Build(); // it always should be after connString 
@@ -26,6 +38,6 @@ app.MapGet("/hey", () =>
     return "Hello, World!";
 });
 
-
+//app.UseMvc();
 app.Run();
 

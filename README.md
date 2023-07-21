@@ -53,3 +53,17 @@ The System includes the following controllers:
 ## Data Seeding
 
 The application includes data seeding functionality to add default data to the tables.
+
+
+
+
+
+## architecture pattern
+I implemented the Dependency Injection (DI) design pattern to achieve a loosely coupled architecture. 
+So Instead of hardcoding dependencies within classes, DI allows us to inject the dependencies from outside the class, making the code more flexible and maintainable
+
+#### How it is used in the app:
+I define interfaces for various functionalities, such as ICourse, IHotel, and IAmenity, These interfaces serve as contracts, defining the behavior that specific classes must implement.
+
+Then, we have service classes like CourseService, HotelService, and AmenityService, which implement the interfaces. These service classes encapsulate the actual business logic and data access operations related to their respective entities.
+
