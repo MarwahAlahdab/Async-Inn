@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Async_Inn_Management_System.Data;
 using Async_Inn_Management_System.Models;
+using Async_Inn_Management_System.Models.Interfaces;
+using Async_Inn_Management_System.Models.Services;
 
 namespace Async_Inn_Management_System.Controllers
 {
@@ -14,33 +16,33 @@ namespace Async_Inn_Management_System.Controllers
     [ApiController]
     public class RoomController : ControllerBase
     {
-        private readonly AsyncInnDbContext _context;
 
-        public RoomController(AsyncInnDbContext context)
+
+        private readonly IRoom _room;
+
+        public RoomController(IRoom room)
         {
-            _context = context;
+            _room = room;
         }
+
 
         // GET: api/Room
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
         {
-          if (_context.Rooms == null)
-          {
-              return NotFound();
-          }
-            return await _context.Rooms.ToListAsync();
+            var room = await _room.GetRooms();
+            if (room == null || room.Count == 0)
+            {
+                return NotFound();
+            }
+            return room.ToList();
         }
 
         // GET: api/Room/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Room>> GetRoom(int id)
         {
-          if (_context.Rooms == null)
-          {
-              return NotFound();
-          }
-            var room = await _context.Rooms.FindAsync(id);
+            var room = await _room.GetRoom(id);
 
             if (room == null)
             {
@@ -50,75 +52,71 @@ namespace Async_Inn_Management_System.Controllers
             return room;
         }
 
-        // PUT: api/Room/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutRoom(int id, Room room)
-        {
-            if (id != room.ID)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(room).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RoomExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
+     
 
         // POST: api/Room
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Room>> PostRoom(Room room)
         {
-          if (_context.Rooms == null)
-          {
-              return Problem("Entity set 'AsyncInnDbContext.Rooms'  is null.");
-          }
-            _context.Rooms.Add(room);
-            await _context.SaveChangesAsync();
+            var createdRoom = await _room.Create(room);
 
-            return CreatedAtAction("GetRoom", new { id = room.ID }, room);
+            return CreatedAtAction("GetRoom", new { id = createdRoom.ID }, createdRoom);
         }
 
         // DELETE: api/Room/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoom(int id)
         {
-            if (_context.Rooms == null)
-            {
-                return NotFound();
-            }
-            var room = await _context.Rooms.FindAsync(id);
+            var room = await _room.GetRoom(id);
             if (room == null)
             {
                 return NotFound();
             }
 
-            _context.Rooms.Remove(room);
-            await _context.SaveChangesAsync();
+            await _room.Delete(id);
 
             return NoContent();
         }
 
-        private bool RoomExists(int id)
-        {
-            return (_context.Rooms?.Any(e => e.ID == id)).GetValueOrDefault();
-        }
+
+
+
+
+        //private bool RoomExists(int id)
+        //{
+        //    return (_context.Rooms?.Any(e => e.ID == id)).GetValueOrDefault();
+        //}
+
+
+
+        // PUT: api/Room/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutRoom(int id, Room room)
+        //{
+        //    if (id != room.ID)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    try
+        //    {
+        //        await _room.UpdateRoom(id, room);
+        //    }
+        //    catch (InvalidOperationException)
+        //    {
+        //        if (room == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return NoContent();
+        //}
     }
 }
