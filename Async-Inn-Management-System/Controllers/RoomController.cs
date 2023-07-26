@@ -80,6 +80,41 @@ namespace Async_Inn_Management_System.Controllers
         }
 
 
+   
+        [HttpPost("{roomId}/Amenity/{amenityId}")]
+        public async Task<IActionResult> AddAmenityToRoom(int roomId, int amenityId)
+        {
+            try
+            {
+                await _room.AddAmenityToRoom(roomId, amenityId);
+                return Ok("Amenity added to the room successfully !");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("{roomId}/Amenity/{amenityId}")]
+        public async Task<IActionResult> RemoveAmenityFromRoom(int roomId, int amenityId)
+        {
+            try
+            {
+                await _room.RemoveAmenityFromRoom(roomId, amenityId);
+                return Ok("Amenity removed succsessfully !");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+
+
+
+
+
 
 
 

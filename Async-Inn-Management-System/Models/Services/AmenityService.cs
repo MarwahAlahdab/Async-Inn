@@ -30,9 +30,11 @@ namespace Async_Inn_Management_System.Models.Services
 
         public async Task<List<Amenity>> GetAmenities()
         {
-            var amenities = await _context.Amenities.ToListAsync();
+            var amenities = await _context.Amenities.Include(a => a.RoomAmenities).ToListAsync();
             return amenities;
         }
+
+  
 
         public async Task<Amenity> GetAmenity(int amenityId)
         {

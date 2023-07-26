@@ -48,7 +48,7 @@ namespace Async_Inn_Management_System.Controllers
             return await _amenity.GetAmenity(id);
         }
 
-      
+
 
 
 
@@ -97,7 +97,7 @@ namespace Async_Inn_Management_System.Controllers
 
         // PUT: api/Amenity/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
+        // [HttpPut("{id}")]
         //public async Task<IActionResult> PutAmenity(int id, Amenity amenity)
         //{
         //    if (id != amenity.ID)
@@ -138,5 +138,5 @@ namespace Async_Inn_Management_System.Controllers
 
 
 
-    }
+    } 
 }

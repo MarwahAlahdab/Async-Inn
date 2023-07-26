@@ -22,6 +22,7 @@ builder.Services.AddDbContext<AsyncInnDbContext>(options => options.UseSqlServer
 builder.Services.AddTransient<IHotel, HotelServices>();
 builder.Services.AddTransient<IRoom, RoomService>();
 builder.Services.AddTransient<IAmenity, AmenityService>();
+builder.Services.AddTransient<IHotelRoom, HotelRoomRepository>();
 
 
 

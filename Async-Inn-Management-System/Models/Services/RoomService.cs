@@ -31,9 +31,11 @@ namespace Async_Inn_Management_System.Models.Services
 
         public async Task<List<Room>> GetRooms()
         {
-            var rooms = await _context.Rooms.ToListAsync();
+            var rooms = await _context.Rooms.Include(r => r.RoomAmenities).ToListAsync();
             return rooms;
         }
+
+   
 
         public async Task<Room> UpdateRoom(int roomId, Room room)
         {
@@ -53,7 +55,40 @@ namespace Async_Inn_Management_System.Models.Services
 
         }
 
+
+
+
+        public async Task AddAmenityToRoom(int roomId, int amenityId)
+        {
+            RoomAmenity roomAmenity = new RoomAmenity()
+            {
+                roomId = roomId,
+                amenityId = amenityId
+            };
+
+            _context.Entry(roomAmenity).State = EntityState.Added;
+            await _context.SaveChangesAsync();
+
+        }
+
+     
+
+        public async Task RemoveAmenityFromRoom(int roomId, int amenityId)
+        {
+            // Find me the record where the room and amenity match our request
+            var result = await _context.RoomAmenities.FirstOrDefaultAsync(r => r.amenityId == amenityId && r.roomId == roomId);
+
+            _context.Entry(result).State = EntityState.Deleted;
+
+            await _context.SaveChangesAsync();
+
+        }
+
+
       
+
+
+
 
     }
 }
