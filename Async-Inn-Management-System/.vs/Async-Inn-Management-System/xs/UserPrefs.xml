@@ -1,36 +1,46 @@
 ﻿<Properties StartupConfiguration="{C03C7ACB-3B3B-46E8-8B34-112E5B7F13A9}|https">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.Async-Inn-Management-System PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/RoomController.cs">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/Services/HotelRoomRepository.cs">
     <Files>
-      <File FileName="Program.cs" Line="18" Column="1" />
-      <File FileName="Models/Hotel.cs" />
-      <File FileName="Data/AsyncInnDbContext.cs" />
+      <File FileName="Program.cs" Line="45" Column="1" />
       <File FileName="appsettings.json" />
-      <File FileName="Models/Amenity.cs" Line="14" Column="6" />
-      <File FileName="Models/Services/HotelServices.cs" Line="34" Column="1" />
-      <File FileName="Models/Services/RoomService.cs" Line="31" Column="1" />
-      <File FileName="Models/Services/AmenityService.cs" Line="28" Column="19" />
-      <File FileName="Controllers/AmenityController.cs" Line="51" Column="7" />
-      <File FileName="Controllers/RoomController.cs" Line="78" Column="18" />
-      <File FileName="Controllers/HotelController.cs" Line="41" Column="1" />
+      <File FileName="Models/Amenity.cs" />
+      <File FileName="Models/Services/RoomService.cs" Line="1" Column="1" />
+      <File FileName="Models/Services/AmenityService.cs" Line="18" Column="10" />
+      <File FileName="Controllers/AmenityController.cs" Line="1" Column="1" />
+      <File FileName="Controllers/RoomController.cs" Line="1" Column="1" />
+      <File FileName="Controllers/HotelController.cs" Line="48" Column="14" />
+      <File FileName="Models/Interfaces/IRoom.cs" />
+      <File FileName="Models/RoomAmenity.cs" Line="11" Column="25" />
+      <File FileName="Models/Interfaces/IHotelRoom.cs" />
+      <File FileName="Models/Services/HotelServices.cs" />
+      <File FileName="Models/HotelRoom.cs" Line="14" Column="41" />
+      <File FileName="Models/Hotel.cs" Line="27" Column="1" />
+      <File FileName="Data/AsyncInnDbContext.cs" Line="58" Column="14" />
+      <File FileName="Models/Room.cs" Line="18" Column="31" />
+      <File FileName="Controllers/HotelRoomController.cs" Line="14" Column="43" />
+      <File FileName="Models/Services/HotelRoomRepository.cs" Line="72" Column="2" />
+      <File FileName="Migrations/AsyncInnDbContextModelSnapshot.cs" Line="1" Column="1" />
+      <File FileName="Migrations/20230726085108_AddRoomAmenity.cs" Line="1" Column="1" />
+      <File FileName="Migrations/20230726125947_UpdateHotelRoomRepository.cs" Line="22" Column="2" />
+      <File FileName="Migrations/20230726130012_AddHotelRoom.cs" Line="31" Column="37" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Async-Inn-Management-System">
             <Node name="Async-Inn-Management-System">
-              <Node name="Controllers">
-                <Node name="RoomController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True">
-                <Node name="Interfaces" expanded="True" />
-                <Node name="Services" expanded="True" />
+                <Node name="Services" expanded="True">
+                  <Node name="HotelRoomRepository.cs" selected="True" />
+                </Node>
               </Node>
+              <Node name="Properties" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -38,4 +48,7 @@
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>

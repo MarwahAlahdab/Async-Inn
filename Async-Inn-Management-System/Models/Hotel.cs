@@ -1,4 +1,6 @@
 ﻿using System;
+using Async_Inn_Management_System.Models.Services;
+
 namespace Async_Inn_Management_System.Models
 {
     public class Hotel
@@ -14,6 +16,7 @@ namespace Async_Inn_Management_System.Models
 
 
 
+        public List<HotelRoom> HotelRooms { get; set; }
 
 
         public Hotel()

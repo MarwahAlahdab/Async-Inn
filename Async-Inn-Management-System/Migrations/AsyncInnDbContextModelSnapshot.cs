@@ -124,6 +124,27 @@ namespace Async_Inn_Management_System.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Async_Inn_Management_System.Models.HotelRoom", b =>
+                {
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HotelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("State")
+                        .HasColumnType("bit");
+
+                    b.HasKey("RoomId", "HotelId");
+
+                    b.HasIndex("HotelId");
+
+                    b.ToTable("HotelRooms");
+                });
+
             modelBuilder.Entity("Async_Inn_Management_System.Models.Room", b =>
                 {
                     b.Property<int>("ID")
@@ -175,6 +196,76 @@ namespace Async_Inn_Management_System.Migrations
                             PetFriendly = true,
                             Price = 150.0
                         });
+                });
+
+            modelBuilder.Entity("Async_Inn_Management_System.Models.RoomAmenity", b =>
+                {
+                    b.Property<int>("roomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("amenityId")
+                        .HasColumnType("int");
+
+                    b.HasKey("roomId", "amenityId");
+
+                    b.HasIndex("amenityId");
+
+                    b.ToTable("RoomAmenities");
+                });
+
+            modelBuilder.Entity("Async_Inn_Management_System.Models.HotelRoom", b =>
+                {
+                    b.HasOne("Async_Inn_Management_System.Models.Hotel", "Hotel")
+                        .WithMany("HotelRooms")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Async_Inn_Management_System.Models.Room", "Room")
+                        .WithMany("HotelRooms")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("Async_Inn_Management_System.Models.RoomAmenity", b =>
+                {
+                    b.HasOne("Async_Inn_Management_System.Models.Amenity", "Amenity")
+                        .WithMany("RoomAmenities")
+                        .HasForeignKey("amenityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Async_Inn_Management_System.Models.Room", "Room")
+                        .WithMany("RoomAmenities")
+                        .HasForeignKey("roomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Amenity");
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("Async_Inn_Management_System.Models.Amenity", b =>
+                {
+                    b.Navigation("RoomAmenities");
+                });
+
+            modelBuilder.Entity("Async_Inn_Management_System.Models.Hotel", b =>
+                {
+                    b.Navigation("HotelRooms");
+                });
+
+            modelBuilder.Entity("Async_Inn_Management_System.Models.Room", b =>
+                {
+                    b.Navigation("HotelRooms");
+
+                    b.Navigation("RoomAmenities");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,6 @@
 ﻿using System;
+using Async_Inn_Management_System.Models.Services;
+
 namespace Async_Inn_Management_System.Models
 {
     public class Room
@@ -11,6 +13,9 @@ namespace Async_Inn_Management_System.Models
         public bool PetFriendly { get; set; }
 
 
+        //NP
+        public List <RoomAmenity> RoomAmenities { get; set; }
+        public List <HotelRoom> HotelRooms { get; set; }
 
 
         public Room()
