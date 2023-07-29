@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Text.Json.Serialization;
 using Async_Inn_Management_System.Data;
 using Async_Inn_Management_System.Models.Interfaces;
 using Async_Inn_Management_System.Models.Services;
@@ -11,6 +12,13 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+// Configure JSON serialization options
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+});
+
 
 string connString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AsyncInnDbContext>(options => options.UseSqlServer(connString));
