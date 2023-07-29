@@ -57,7 +57,15 @@ namespace Async_Inn_Management_System.Data
            }
            );
 
-               modelBuilder.Entity<HotelRoom>().HasKey(hr => new { hr.RoomId, hr.HotelId });
+            modelBuilder.Entity<RoomAmenity>().HasData(
+      new RoomAmenity { roomId = 1, amenityId = 1 }, 
+      new RoomAmenity { roomId = 1, amenityId = 2 }, 
+      new RoomAmenity { roomId = 2, amenityId = 1 }  
+                                                     
+  );
+
+
+            modelBuilder.Entity<HotelRoom>().HasKey(hr => new { hr.RoomId, hr.HotelId });
 
 
 
