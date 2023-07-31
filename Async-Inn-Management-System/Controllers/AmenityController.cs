@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Async_Inn_Management_System.Data;
 using Async_Inn_Management_System.Models;
 using Async_Inn_Management_System.Models.Interfaces;
+using Async_Inn_Management_System.Models.DTO;
+using Async_Inn_Management_System.Models.Services;
 
 namespace Async_Inn_Management_System.Controllers
 {
@@ -22,35 +24,40 @@ namespace Async_Inn_Management_System.Controllers
             _amenity = amenity;
         }
 
+
+
         // GET: api/Amenity
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Amenity>>> GetAmenities()
+        public async Task<ActionResult<IEnumerable<AmenityDTO>>> GetAmenities()
         {
-            var amenity = await _amenity.GetAmenities();
+            var amenities = await _amenity.GetAmenities();
 
-            if (amenity == null || amenity.Count == 0)
+            if (amenities == null || amenities.Count == 0)
             {
                 return NotFound();
             }
-            return amenity.ToList();
+            return Ok(amenities);
         }
+
+
+
+
 
         // GET: api/Amenity/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Amenity>> GetAmenity(int id)
+        public async Task<ActionResult<AmenityDTO>> GetAmenity(int id)
         {
-            if (await _amenity.GetAmenity(id) == null)
+            var amenity = await _amenity.GetAmenity(id);
+            if (amenity == null)
             {
                 return NotFound();
             }
-
-
-            return await _amenity.GetAmenity(id);
+            return Ok(amenity);
         }
 
 
 
-
+   
 
 
 
@@ -58,22 +65,16 @@ namespace Async_Inn_Management_System.Controllers
         // POST: api/Amenity
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Amenity>> PostAmenity(Amenity amenity)
+        public async Task<ActionResult<AmenityDTO>> PostAmenity(AmenityDTO amenityDTO)
         {
-            if (amenity == null)
-            {
-                return Problem("Entity set 'AsyncInnDbContext.Amenities'  is null.");
-            }
-            var newAmenity = await _amenity.Create(amenity);
+        
+            var newAmenity = await _amenity.Create(amenityDTO);
 
             return CreatedAtAction("GetAmenity", new { id = newAmenity.ID }, newAmenity);
 
 
 
         }
-
-
-
 
 
 
@@ -93,6 +94,14 @@ namespace Async_Inn_Management_System.Controllers
             await _amenity.Delete(id);
             return NoContent();
         }
+
+
+
+
+
+
+
+
 
 
         // PUT: api/Amenity/5

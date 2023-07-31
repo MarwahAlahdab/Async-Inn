@@ -1,5 +1,6 @@
 ﻿using System;
 using Async_Inn_Management_System.Data;
+using Async_Inn_Management_System.Models.DTO;
 using Async_Inn_Management_System.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,25 +15,68 @@ namespace Async_Inn_Management_System.Models.Services
             _context = context;
         }
 
-        public async Task<Room> Create(Room room)
+        public async Task<RoomDTO> Create(RoomDTO roomDTO)
         {
-            _context.Rooms.Add(room);
+            var room = new Room
+            {
+                Name = roomDTO.Name,
+                NickName = roomDTO.NickName,
+                Price = roomDTO.Price,
+                PetFriendly = roomDTO.PetFriendly
+            };
+
+            _context.Entry(room).State = EntityState.Added;
+
             await _context.SaveChangesAsync();
-            return room;
+
+
+            RoomDTO addedAmenity = await GetRoom(room.ID);
+
+            return addedAmenity;
         }
 
        
 
-        public async Task<Room> GetRoom(int roomId)
+        public async Task<RoomDTO> GetRoom(int roomId)
         {
             Room room = await _context.Rooms.FindAsync(roomId);
-            return room;
+
+            if (room == null)
+            {
+                return null;
+            }
+
+            var roomDTO = new RoomDTO
+            {
+                Id = room.ID,
+                Name = room.Name,
+                NickName = room.NickName,
+                Price = room.Price,
+                PetFriendly = room.PetFriendly
+            };
+
+            return roomDTO;
         }
 
-        public async Task<List<Room>> GetRooms()
+
+
+
+
+
+        public async Task<List<RoomDTO>> GetRooms()
         {
             var rooms = await _context.Rooms.Include(r => r.RoomAmenities).ToListAsync();
-            return rooms;
+
+            var roomsDTO = rooms.Select(r => new RoomDTO
+            {
+                Id = r.ID,
+                Name = r.Name,
+                NickName = r.NickName,
+                Price = r.Price,
+                PetFriendly = r.PetFriendly
+            }).ToList();
+
+            return roomsDTO;
         }
 
    
@@ -49,7 +93,7 @@ namespace Async_Inn_Management_System.Models.Services
 
         public async Task Delete(int roomId)
         {
-            Room room = await GetRoom(roomId);
+            Room room = await _context.Rooms.FindAsync(roomId);
             _context.Entry(room).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
 

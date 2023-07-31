@@ -9,6 +9,7 @@ using Async_Inn_Management_System.Data;
 using Async_Inn_Management_System.Models;
 using Async_Inn_Management_System.Models.Interfaces;
 using Async_Inn_Management_System.Models.Services;
+using Async_Inn_Management_System.Models.DTO;
 
 namespace Async_Inn_Management_System.Controllers
 {
@@ -23,9 +24,10 @@ namespace Async_Inn_Management_System.Controllers
             _hotel = hotel;
         }
 
+
         // GET: api/Hotel
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
+        public async Task<ActionResult<IEnumerable<HotelDTO>>> GetHotels()
         {
             var hotels = await _hotel.GetHoteles();
 
@@ -33,26 +35,27 @@ namespace Async_Inn_Management_System.Controllers
             {
                 return NotFound();
             }
-            return hotels.ToList();
+            return Ok(hotels);
         }
 
 
 
         // GET: api/Hotel/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Hotel>> GetHotel(int id)
+        public async Task<ActionResult<HotelDTO>> GetHotel(int id)
         {
-            if (await _hotel.GetHotel(id) == null)
+            var hotel = await _hotel.GetHotel(id);
+            if ( hotel == null)
             {
                 return NotFound();
             }
 
-            return await _hotel.GetHotel(id);
+            return Ok(hotel);
         }
 
 
 
-
+  
 
 
 
@@ -66,11 +69,11 @@ namespace Async_Inn_Management_System.Controllers
         // POST: api/Hotel
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Hotel>> PostHotel(Hotel hotel)
+        public async Task<ActionResult<HotelDTO>> PostHotel(HotelDTO hotelDTO)
         {
-            var newHotel = await _hotel.Create(hotel);
+            var newHotel = await _hotel.Create(hotelDTO);
 
-            return CreatedAtAction("GetHotel", new { id = newHotel.ID }, newHotel);
+            return CreatedAtAction("GetHotel", new { id = newHotel.Id }, newHotel);
         }
 
 

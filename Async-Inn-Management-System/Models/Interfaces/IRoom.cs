@@ -1,16 +1,18 @@
 ﻿using System;
+using Async_Inn_Management_System.Models.DTO;
+
 namespace Async_Inn_Management_System.Models.Interfaces
 {
 	public interface IRoom
 	{
         //create
-        Task<Room> Create(Room room);
+        Task<RoomDTO> Create(RoomDTO roomDTO);
 
         //GET all
-        Task<List<Room>> GetRooms();
+        Task<List<RoomDTO>> GetRooms();
 
         //GET by id
-        Task<Room> GetRoom(int roomId);
+        Task<RoomDTO> GetRoom(int roomId);
 
         //Update
         Task<Room> UpdateRoom(int roomId, Room room);
