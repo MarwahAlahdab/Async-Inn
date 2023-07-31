@@ -12,6 +12,8 @@ namespace Async_Inn_Management_System.Models
         public double Price { get; set; }
         public bool PetFriendly { get; set; }
 
+        public RoomLayout Layout { get; set; }
+
 
         //NP
         public List <RoomAmenity> RoomAmenities { get; set; }
@@ -22,5 +24,13 @@ namespace Async_Inn_Management_System.Models
         {
         }
     }
+
+    public enum RoomLayout
+    {
+        Studio = 0,
+        OneBedroom = 1,
+        TwoBedroom = 2
+    }
+
 }
 

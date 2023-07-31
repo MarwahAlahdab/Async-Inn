@@ -9,6 +9,7 @@ using Async_Inn_Management_System.Data;
 using Async_Inn_Management_System.Models;
 using Async_Inn_Management_System.Models.Interfaces;
 using Async_Inn_Management_System.Models.Services;
+using Async_Inn_Management_System.Models.DTO;
 
 namespace Async_Inn_Management_System.Controllers
 {
@@ -28,19 +29,21 @@ namespace Async_Inn_Management_System.Controllers
 
         // GET: api/Room
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Room>>> GetRooms()
+        public async Task<ActionResult<IEnumerable<RoomDTO>>> GetRooms()
         {
-            var room = await _room.GetRooms();
-            if (room == null || room.Count == 0)
+            var rooms = await _room.GetRooms();
+            if (rooms == null || rooms.Count == 0)
             {
                 return NotFound();
             }
-            return room.ToList();
+            return Ok(rooms);
         }
+
+
 
         // GET: api/Room/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Room>> GetRoom(int id)
+        public async Task<ActionResult<RoomDTO>> GetRoom(int id)
         {
             var room = await _room.GetRoom(id);
 
@@ -49,20 +52,28 @@ namespace Async_Inn_Management_System.Controllers
                 return NotFound();
             }
 
-            return room;
+            return Ok(room);
         }
+
+
+     
+
+
 
      
 
         // POST: api/Room
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Room>> PostRoom(Room room)
+        public async Task<ActionResult<RoomDTO>> PostRoom(RoomDTO roomDTO)
         {
-            var createdRoom = await _room.Create(room);
+            var createdRoom = await _room.Create(roomDTO);
 
-            return CreatedAtAction("GetRoom", new { id = createdRoom.ID }, createdRoom);
+            return CreatedAtAction("GetRoom", new { id = createdRoom.Id }, createdRoom);
         }
+
+
+
 
         // DELETE: api/Room/5
         [HttpDelete("{id}")]

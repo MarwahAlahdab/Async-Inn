@@ -1,4 +1,6 @@
 ﻿using System;
+using Async_Inn_Management_System.Models.DTO;
+
 namespace Async_Inn_Management_System.Models.Interfaces
 {
 
@@ -6,11 +8,11 @@ namespace Async_Inn_Management_System.Models.Interfaces
 	{
        
 
-        Task<HotelRoom> AddHotelRoom(HotelRoom hotelRoom);
+        Task<HotelRoomDTO> AddHotelRoom(HotelRoomDTO hotelRoomDTO);
 
-        Task<HotelRoom> GetHotelRoom(int roomId, int hotelId);
+        Task<HotelRoomDTO> GetHotelRoom(int roomId, int hotelId);
 
-        Task<List<HotelRoom>> GetAllHotelRooms(int hotelId);
+        Task<List<HotelRoomDTO>> GetAllHotelRooms(int hotelId);
 
         Task<HotelRoom> UpdateHotelRoom(HotelRoom hotelRoom);
 

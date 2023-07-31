@@ -3,6 +3,7 @@ using Async_Inn_Management_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Async_Inn_Management_System.Migrations
 {
     [DbContext(typeof(AsyncInnDbContext))]
-    partial class AsyncInnDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230731164352_seedingDataHotelRoom")]
+    partial class seedingDataHotelRoom
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,9 +172,6 @@ namespace Async_Inn_Management_System.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
 
-                    b.Property<int>("Layout")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -194,7 +194,6 @@ namespace Async_Inn_Management_System.Migrations
                         new
                         {
                             ID = 1,
-                            Layout = 1,
                             Name = "Room 1",
                             NickName = "Nickname 1",
                             PetFriendly = true,
@@ -203,7 +202,6 @@ namespace Async_Inn_Management_System.Migrations
                         new
                         {
                             ID = 2,
-                            Layout = 2,
                             Name = "Room 2",
                             NickName = "Nickname 2",
                             PetFriendly = false,
@@ -212,7 +210,6 @@ namespace Async_Inn_Management_System.Migrations
                         new
                         {
                             ID = 3,
-                            Layout = 1,
                             Name = "Room 3",
                             NickName = "Nickname 3",
                             PetFriendly = true,

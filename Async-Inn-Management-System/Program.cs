@@ -20,6 +20,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 });
 
 
+
 string connString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AsyncInnDbContext>(options => options.UseSqlServer(connString));
 

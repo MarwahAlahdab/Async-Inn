@@ -39,10 +39,16 @@ namespace Async_Inn_Management_System.Data
     );
 
             modelBuilder.Entity<Room>().HasData(
-           new Room { ID = 1, Name = "Room 1", NickName = "Nickname 1", Price = 100.0, PetFriendly = true },
-           new Room { ID = 2, Name = "Room 2", NickName = "Nickname 2", Price = 120.0, PetFriendly = false },
-           new Room { ID = 3, Name = "Room 3", NickName = "Nickname 3", Price = 150.0, PetFriendly = true }
-       );
+      new Room { ID = 1, Name = "Room 1", NickName = "Nickname 1", Price = 100.0, PetFriendly = true, Layout = RoomLayout.OneBedroom },
+      new Room { ID = 2, Name = "Room 2", NickName = "Nickname 2", Price = 120.0, PetFriendly = false, Layout = RoomLayout.TwoBedroom },
+      new Room { ID = 3, Name = "Room 3", NickName = "Nickname 3", Price = 150.0, PetFriendly = true, Layout = RoomLayout.OneBedroom }
+  );
+
+
+
+
+
+
 
             modelBuilder.Entity<Amenity>().HasData(
                 new Amenity { ID = 1, Name = "Amenity 1" },
@@ -64,12 +70,18 @@ namespace Async_Inn_Management_System.Data
                                                      
   );
 
+            modelBuilder.Entity<HotelRoom>().HasData(
+    new HotelRoom { HotelId = 1, RoomId = 1, State = true },
+    new HotelRoom { HotelId = 1, RoomId = 2, State = false }
+);
+
 
             modelBuilder.Entity<HotelRoom>().HasKey(hr => new { hr.RoomId, hr.HotelId });
 
 
 
-
+      
+         
 
         }
 
